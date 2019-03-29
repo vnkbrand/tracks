@@ -62,3 +62,43 @@ ii. Query for individual user based on id (django gives django user model)
 /users/schema.py
 1. Create Query class
 2. Enable Query in app/schema.py
+
+<!-- User authenticate with Django QraphQL JWT -->
+Go to https://github.com/flavors/django-graphql-jwt
+1. Follow instructions on the README
+2. Add Query in users/schema.py to get info from users for jwt auth etc. Query = 'me'
+3. Resolve query, 'me'
+
+<!-- Once get JWT, provide on Auth Header -->
+*Need to use insomnia (insomnia.rest) as graphql does not provide this functionality
+
+* Use JWT Token with insomnia to auth user
+Provide the auth header from graphql into into Insomnia
+--> JWT "token#"
+
+<!-- Connecting Users with Tracks -->
+* Link new tracks with users - we get info on who created a track. Thus, need to merge tracks & users models.
+1. add 'posted_by' to Track model
+2. Adding .ForeignKey() allows many to one functionality - e.g numerous tracks linked to 1 user. 
+3. Use on_delete=models.CASCADE as it allows ALL tracks to be deleted if user deletes their profile. 
+4. Makemigrations and migrate (whenever there is a change to a model)
+5. Update Make Track Mutation in tracks/schema.py
+--> when we create a track, we want info from the user.
+--> get info from user in context and then pass into posted_by field. 
+6. Create error handling for unauth'd users in tracks/schema.py
+
+<!-- Update/Delete Track Functionality -->
+Update & Delete Tracks
+1. Got o tracks/schema.py and add class UpdateTrack
+2. Ensure that we use posted_by field so that only the owner can U/D the track. 
+3. Register mutation in base mutation class
+
+4. Add Delete Tracks ability in schema.py
+*Only return id of deleted track (other info is irrelevant)
+
+<!-- Add ability to like tracks -->
+1. Not going to create separate Like Model. Going to create Like class under Track class and modelled with class 'Like'.
+2. MODEL STRUCTURE: Each track will have info of its likes and vice-versa. 
+3. Make migrations
+4. CREATE LIKES
+- Import Like Model into app/schema.py and UserType
