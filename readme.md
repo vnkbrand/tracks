@@ -185,3 +185,9 @@ If NOT AUTHENITCATED, display <Auth />> Component which holds Register or Login 
 When a user inputs a value to a field, we will set it in state:
 onChange={event => setUsername(event.target.value)}
 The onChange handler - stores the value of the username etc. into state
+
+5. Complete <Success Dialog> in Register.js - for UI, after Registration. 
+
+<!-- LOGIN after registration -->
+Handle Login submission, after Registration through Auth/index.js
+- Create State and allow users within Register component or Login component see the login or not. 
