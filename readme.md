@@ -101,4 +101,87 @@ Update & Delete Tracks
 2. MODEL STRUCTURE: Each track will have info of its likes and vice-versa. 
 3. Make migrations
 4. CREATE LIKES
-- Import Like Model into app/schema.py and UserType
+- Import Like Model into app/schema.py and UserType from users/schema.py
+- Add CreateLike Class in app/schema.py
+
+<!-- Query for Likes -->
+*Ability to see Likes on Tracks
+* Get list of all likes and list of all tracks
+* In app/schema.py
+1. Create class LikeType in schema.py where inner meta class is modelled after the Like model.
+2. Create likes Query - LikeType
+3. Add resolver in root query class
+4. Return Like.objects.all()
+
+*Now when you query for likes in GraphiQL, you look for likes and the usernames/tracks attached to each like. 
+
+<!-- Handling Errors with GraphQL -->
+1. Move away from Raising exceptions to use class, GraphQL Error
+2. Import into schema.py
+3. Replace Exceptiion with GraphQLError
+
+<!-- Search for tracks -->
+* Search through all tracks through their id's, descip's etc.
+1. In schema.py
+2. Add search argument
+3. Use icontains as search functions
+
+<!-- FRONT-END -->
+<!-- Material UI -->
+- Utilised Material UI for basic front-end 
+- Color themes are held in withRoot.js that injects theme with CssBaseline component and wrap around Root Component & Main Auth Component.
+- Each Component also has separate Styles function with property names and each Component is exported whilst wrapped with the withStyles function. 
+
+<!-- Structure -->
+- Index.js is entry-point
+- Root.js will handle routes (2 Main Routes) - 
+  Pages\App.js (Root Route) and Pages/Profile.js 
+
+- Every user will have a Profile route - /profile/:userid
+- Register & Login Page (not sperate route, just prevents   users from seeing home page).
+
+AUTHENTICATION:
+- Auth/Login & Register.js
+
+SHARED (Across )
+- Header, Error, Loading and AUDIO PLAYER components!
+
+TRACK FOLDER
+- All Components for CRUD, Searching, Likes etc.
+- Link to back-end functionality through each component. 
+
+<!-- APOLLO BOOSTER -->
+1. Use Apollo Boost to execute queries & mutations from React App
+- Use Apollo when utilising GraphQL & React.js
+
+2. Connecting back-end to React-client
+- in src/index.js
+
+<!-- Allow cross-origin access from our React App to our Django Back-end -->
+3. Utilise djagno-cors-headers to allow cross-origin resource sharing between Django and React
+- look on github.com/ottoylu/django-cors-headers
+- Install cors-headers to DJANGO INSTALLED APPS
+- Install Middleware as well (at the top)
+- Add CORS_ORIGINS_WHITELIST
+
+<!-- AUTHENTICATING USERS -->
+* In Auth/
+*STRUCTURE 
+When user visits 1st, shown Register page. Once logged-in, we give them valid JWT - we verify and then send to home page. 
+
+Within index.js - display <Root /> component IF AUTHENTICATED.
+
+If NOT AUTHENITCATED, display <Auth />> Component which holds Register or Login form
+
+1. <Auth /> Component for index.js
+
+2. Display Regiser/Login form on Auth Component to /index.js
+
+3. Implement Register & Login Forms on respective components
+- When a user fills out the form and usbmit, want to execute a Create New User execution with mutation CreateUser - thus, bring in Mutation component to React Apollo. 
+4. Import gql from apollo-boost as well. 
+
+<!-- *Set values to State* -->
+When a user inputs a value to a field, we will set it in state:
+onChange={event => setUsername(event.target.value)}
+The onChange handler - stores the value of the username etc. into state
