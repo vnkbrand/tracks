@@ -191,3 +191,36 @@ The onChange handler - stores the value of the username etc. into state
 <!-- LOGIN after registration -->
 Handle Login submission, after Registration through Auth/index.js
 - Create State and allow users within Register component or Login component see the login or not. 
+
+<!-- Error Handling -->
+Via error.js
+
+6. Finalise Login Form
+- Utilise similar code as Register.js and use tokenAuth mutation for Login function.
+- Complete Login form
+
+<!-- Login (JWT Handling) -->
+7. Apollo Client State to Manage Auth State
+- When users login, we use tokenAuth mutation and get JWT back.
+- We use this to auth users and kick them to Home page and then provide JWT on all future requests.
+i. Thus, store JWT in browser via local storage - /Login.js
+ii. Also use JWT on all future requests
+
+iii. Store authToken in Global state to ensure authToken is constant throughout page refreshes etc.
+- ApolloBoost has built-in state management system (src/index.js) - clientState
+- !!isLoggedIn - grabs the authToken in localStorage and if there is 'something' there, then the '!!' converts that to a boolean. 
+- In index.js - If isLoggedIn is true, then show the Root Component and if UnAuthenticated, then show the Auth Componenent
+
+<!-- Add JWT to Authorization Header with Apollo Client -->
+*Send authToken to backend as Auth Header in a request
+
+1. In index.js - add fetchOptions
+2. Include credentials
+3. Ensure token is kept in the header and if empty, then make a empty string.
+
+<!-- Routing - React Router 4 -->
+/Root.js - import router settings
+1. Build Routes in Root.js
+2. Then Logo and user info for routing
+- Add Header.js with routing
+- Add Signout function - Auth/Signout.js
