@@ -224,3 +224,46 @@ iii. Store authToken in Global state to ensure authToken is constant throughout 
 2. Then Logo and user info for routing
 - Add Header.js with routing
 - Add Signout function - Auth/Signout.js
+*Logo goes to "/" and Username goes to Profile page
+
+3. Signout Button - "click" the Signout button
+- Remove authToken from localStorage
+- Amend isLoggedIn to False
+- /Signout.js - interact with Client without Mutation or Query is to import a different component - Apollo Consumer
+
+<!-- Add Loading and Error Component -->
+Added to Root.js and linked to Error.js & Loading.js
+
+<!-- Content Area of Home Page -->
+1. Search bar at top - for tracks
+2. Track List area of tracks user created
+3. Can Like the track, see the track details, play the track and if user has created the track - can delete it.
+4. Floating button on bottom right and allow auth'd users to create new trackss
+*ALL IN Pages/App.js
+
+i. TRACKLIST
+Use the Query_Tracks and display user's tracks on the home page (TRACKLIST)
+- Input Expansion Panel settings
+- Place 4 COMPONENTS WITHIN TrackList 
+  a. UpdateTrack
+  b. LikeTrack
+  c. DeleteTrack
+  d. AudioPlayer
+
+<!-- Build CreateTrack Button & Dialog -->
+- CreateTrack.js
+- Within <> React Component - add floating button
+- Add Create Track FormField
+
+<!-- Cancel Functionality, Audio File Description & Add Track Functionality -->
+* Also ensure that users can submit audio files only
+CreateTrack.js
+- Toggle Dialog - Create Open Piece of State
+  a. Set Dialog state to Open after click and false, when clicking 'Cancel'.
+  b. Add button (floating button) must disappear when CreateTrack dialog is open. Thus, clearIcon when open is True.
+  c. Size of description text field - multi-line - FormControl component
+  d. Audio file name - FormControl
+  - But first need to accept valid audio file types
+
+  <!-- Upload files functionality -->
+  * Use service called Cloudinary
