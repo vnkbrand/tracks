@@ -267,3 +267,67 @@ CreateTrack.js
 
   <!-- Upload files functionality -->
   * Use service called Cloudinary
+  CreateTrack.js
+
+  <!-- Refresh Page after upload -->
+  * Use refetchQueries
+
+  <!-- Clear Dialog State after upload -->
+  CreateTrack.js
+  Make a controlled by state component
+
+  <!-- Create File Size Limit -->
+ *CreateTrack.js - in handleAudioChange
+
+ <!-- Audio Player Functionality -->
+ * in shared/AuidoPlayer.js
+ - Use component from react player library
+ Passed url of track into AudioPlayer.js
+ And linked url in TrackList - url={track.url} (AudioPlayer Component!)
+
+ <!-- Search Tracks Function -->
+ Search Query - title, username of poster, description etc.
+ *Searchracks.js
+ Need to conditionally execute a query - use apollo-consumer component in order to get access to client and execute a query from it.
+ *In SearchTracks.js
+ - Wrap form in ApolloConsumer tags
+ - Add function and put form into the return function
+
+<!-- Update TrackList to Search Query -->
+Create New State in App.js
+* Override data that gets passed to TracksList, based on Search Query. In App Component - determine if we have any hits on a search or not.
+
+* Clear search and results
+- Click on the Clear (X) button
+clearSearchInput - call and pass empty array
+call setSearch and clear input - make controlled component - input will be cleared
+- FOCUS the Search Input - add prop inputRef={inputEl} and use React Hook (useRef) where its return element focuses/highlights. 
+
+<!-- Update Track and Delete Track Components - FULL CRUD -->
+*UPDATE TRACK
+1. Create button in updatetrack.js
+- Need Track info pre-filled upon update track
+- Only allow owner to update track
+- Compare current user to OP (ID to ID) - UpdateTrack.js
+- Avoid passing user data down through multiple levels of props - RATHER USE - react context! Allows to pass data/state down the component tree and not touch irrelevant components.
+a. Start in root.js
+b. UpdateTrack.js - place in currentUser state
+
+<!-- Delete Track -->
+* Need to ensure it is the OP
+* DeleteTracks.js
+- Ensure refresh list after deletion
+
+<!-- Likes/ Liking Tracks -->
+1. Create Button
+2. Add Like Mutation
+3. Prevent users from liking a track multiple times
+
+DATA it needs: 
+need to know track id
+display the like count of track
+
+Disable Like for own user 
+- Grab current user's like set, go through array and see in sub-field if there is an id that matches a track id in list. 
+- UserContext
+- In IconButton - handleDisableLikedTrack
